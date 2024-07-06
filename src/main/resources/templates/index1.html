@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div class="buttons-container">
+    <th:block th:each="msg : ${messages}">
+        <h1 th:text="${msg}"></h1>
+    </th:block>
+
+    <form th:action="@{/users}">
+        <br/>
+        <input type="submit" value="Login" class="update-button">
+    </form>
+    <br>
+    <div class="buttons-container">
+        <form th:method="get" th:action="@{/logout}">
+            <input type="submit" value="Log out" class="update-button">
+        </form>
+    </div>
+
+</div>
+
+
+<style>
+    .buttons-container {
+        display: block;
+        gap: 10px; /* Отступ между кнопками */
+    }
+
+    .update-button,
+    .reg-button {
+        padding: 5px 10px; /* Поля вокруг текста кнопок */
+        border: none;
+        background-color: #009900; /* фоновый цвет */
+        color: black; /* текст */
+        cursor: pointer;
+    }
+
+    .update-button:hover,
+    .reg-button:hover {
+        background-color: #33CC33; /* Темно-синий фон при наведении */
+    }
+</style>
+</body>
+</html>

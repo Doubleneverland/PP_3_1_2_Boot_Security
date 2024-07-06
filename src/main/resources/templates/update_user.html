@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update User</title>
+</head>
+<body>
+<div th:each="user : ${up_user}" class="buttons-container">
+    <form th:method="POST" th:action="@{/admin/user/edit}" th:object="${up_user}">
+        <input type="hidden" name="id" th:value="${user.id}">
+        <label for="name">Enter new name</label>
+        <input type="text" th:field="*{name}" id="name">
+        <br/>
+        <br/>
+        <label for="lastname">Enter new lastname</label>
+        <input type="text" th:field="*{lastName}" id="lastname">
+        <br>
+        <br>
+        <label for="password">Enter new password</label>
+        <input type="text" th:field="*{password}" id="password">
+        <br/>
+        <br/>
+        <form method="POST" th:action="@{/}" th:object="${newUser}">
+
+            <label for="roles">Choose role:</label>
+            <select id="roles" name="roles" multiple="multiple">
+                <option th:each="role : ${list_role}" th:value="${role.id}" th:text="${role.role}"></option>
+            </select>
+
+        </form>
+        <input type="submit" value="Edit" class="update-button">
+    </form>
+
+</div>
+<form th:action="@{/admin/allusers}">
+    <input type="submit" value="Back" class="delete-button">
+</form>
+<br>
+<div class="buttons-container">
+    <form th:method="get" th:action="@{/logout}">
+        <input type="submit" value="Log out" class="update-button">
+    </form>
+</div>
+
+<style>
+    .buttons-container {
+        display: block;
+        gap: 10px; /* Отступ между кнопками */
+    }
+
+    .update-button,
+    .delete-button {
+        padding: 5px 10px; /* Поля вокруг текста кнопок */
+        border: none;
+        background-color: #009900; /* фоновый цвет */
+        color: black; /* текст */
+        cursor: pointer;
+    }
+
+    .update-button:hover,
+    .delete-button:hover {
+        background-color: #33CC33; /* Темно-синий фон при наведении */
+    }
+</style>
+
+</body>
+</html>

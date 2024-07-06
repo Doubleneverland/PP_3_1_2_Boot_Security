@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User Page</title>
+</head>
+<body>
+<div>
+    <table>
+        <tr th:each="user : ${user_page}">
+            <td th:text="${user.getName()} + ' ' + ${user.getLastName()} + ' ' + ${user.getRoles()}"></td>
+            <td>
+                <div class="buttons-container">
+                    <form th:method="get" th:action="@{/logout}">
+                        <input type="submit" value="Log out" class="update-button">
+                    </form>
+                </div>
+            </td>
+        </tr>
+
+    </table>
+</div>
+<style>
+    .buttons-container {
+        display: flex;
+        gap: 10px; /* Отступ между кнопками */
+    }
+
+    .update-button,
+    .delete-button {
+        padding: 5px 10px; /* Поля вокруг текста кнопок */
+        border: none;
+        background-color: #009900; /* Синяя фоновая цвет */
+        color: black; /* Белый текст */
+        cursor: pointer;
+    }
+
+    .update-button:hover,
+    .delete-button:hover {
+        background-color: #33CC33; /* Темно-синий фон при наведении */
+    }
+</style>
+</body>
+</html>

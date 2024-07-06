@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+</head>
+<body>
+
+<div>
+<table>
+    <tr th:each="user : ${get_user}">
+        <td th:text="${user.getName()} + ' ' + ${user.getLastName()} + ' ' + ${user.getAuthorities()}"></td>
+        <td>
+            <div class="buttons-container">
+                <form action="/admin/user/update">
+                    <input type="hidden" name="id" th:value="${user.id}">
+                    <input type="submit" value="Update" class="update-button">
+                </form>
+
+                <form action="/admin/user/delete">
+                    <input type="hidden" name="id" th:value="${user.id}">
+                    <input type="submit" value="Delete" class="delete-button">
+                </form>
+
+                <form action="/admin/userpage">
+                    <input type="hidden" name="id" th:value="${user.id}">
+                    <input type="submit" value="User page" class="update-button">
+                </form>
+            </div>
+
+        </td>
+    </tr>
+</table>
+    <form th:action="@{/admin/user/new}">
+        <br/>
+        <br/>
+        <input type="submit" value="Press to create new user" class="update-button">
+    </form>
+</div>
+<br>
+<div class="buttons-container">
+    <form th:method="get" th:action="@{/logout}">
+        <input type="submit" value="Log out" class="update-button">
+    </form>
+</div>
+<style>
+    .buttons-container {
+        display: flex;
+        gap: 10px; /* Отступ между кнопками */
+    }
+
+    .update-button,
+    .delete-button {
+        padding: 5px 10px; /* Поля вокруг текста кнопок */
+        border: none;
+        background-color: #009900; /* Синяя фоновая цвет */
+        color: black; /* Белый текст */
+        cursor: pointer;
+    }
+
+    .update-button:hover,
+    .delete-button:hover {
+        background-color: #33CC33; /* Темно-синий фон при наведении */
+    }
+</style>
+
+
+
+</body>
+</html>

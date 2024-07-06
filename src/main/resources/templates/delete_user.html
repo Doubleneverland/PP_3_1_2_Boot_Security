@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete</title>
+</head>
+<body>
+
+<table>
+    <tbody>
+    <tr th:each="user : ${que}">
+        <td th:text="'Delete this user?'"></td>
+        <td>
+            <div class="buttons-container">
+                <form th:action="@{/admin/user/delete/YES}">
+                    <input type="hidden" name="id" th:value="${user.id}">
+                    <input type="submit" value="YES" class="delete-button">
+                </form>
+
+                <form th:action="@{/admin/allusers}">
+                    <input type="submit" value="NO" class="update-button">
+                </form>
+            </div>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<br>
+<div class="buttons-container">
+    <form th:method="get" th:action="@{/logout}">
+        <input type="submit" value="Log out" class="update-button">
+    </form>
+</div>
+
+<style>
+    .buttons-container {
+        display: flex;
+        gap: 10px; /* Отступ между кнопками */
+    }
+
+    .update-button {
+        padding: 5px 10px; /* Поля вокруг текста кнопок */
+        border: none;
+        background-color: #009900; /* фоновая цвет */
+        color: black; /* Белый текст */
+        cursor: pointer;
+    }
+    .delete-button {
+        padding: 5px 10px; /* Поля вокруг текста кнопок */
+        border: none;
+        background-color: #FF3300; /* фоновая цвет */
+        color: black; /* Белый текст */
+        cursor: pointer;
+    }
+
+    .update-button:hover,
+    .delete-button:hover {
+        background-color: #33CC33; /* фон при наведении */
+    }
+</style>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>New User</title>
+</head>
+<body>
+<div class="buttons-container">
+<form th:method="POST" th:action="@{/}" th:object="${newUser}">
+    <label for="name">Enter your name: </label>
+    <input type="text" th:field="*{name}" id="name">
+    <br/>
+    <br/>
+    <label for="lastName">Enter your lastname: </label>
+    <input type="text" th:field="*{lastName}" id="lastName">
+    <br/>
+    <br/>
+    <label for="pass">Enter password</label>
+    <input type="text" th:field="*{password}" id="pass">
+    <br/>
+    <br/>
+    <form method="POST" th:action="@{/}" th:object="${newUser}">
+
+        <label for="roles">Choose role:</label>
+        <select id="roles" name="roles" multiple="multiple">
+            <option th:each="role : ${list_role}" th:value="${role.id}" th:text="${role.role}"></option>
+        </select>
+        <input type="submit" value="Create" class="update-button">
+    </form>
+
+</form>
+
+</div>
+<br>
+<div class="buttons-container">
+    <form th:method="get" th:action="@{/logout}">
+        <input type="submit" value="Log out" class="update-button">
+    </form>
+    <form th:action="@{/admin/allusers}">
+        <input type="submit" value="Back" class="update-button">
+    </form>
+</div>
+<style>
+    .buttons-container {
+        display: flex;
+        gap: 10px; /* Отступ между кнопками */
+    }
+
+    .update-button,
+    .delete-button {
+        padding: 5px 10px; /* Поля вокруг текста кнопок */
+        border: none;
+        background-color: #009900; /* Синяя фоновая цвет */
+        color: black; /* Белый текст */
+        cursor: pointer;
+    }
+
+    .update-button:hover,
+    .delete-button:hover {
+        background-color: #33CC33; /* Темно-синий фон при наведении */
+    }
+</style>
+
+</body>
+</html>
