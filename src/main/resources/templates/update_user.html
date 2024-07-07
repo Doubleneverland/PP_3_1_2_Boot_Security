@@ -20,18 +20,18 @@
         <input type="text" th:field="*{password}" id="password">
         <br/>
         <br/>
-        <form method="POST" th:action="@{/}" th:object="${newUser}">
 
-            <label for="roles">Choose role:</label>
-            <select id="roles" name="roles" multiple="multiple">
-                <option th:each="role : ${list_role}" th:value="${role.id}" th:text="${role.role}"></option>
-            </select>
-
-        </form>
+        Choose role:
+        <div th:each="role : ${update_role}">
+            <label>
+                <input type="checkbox" th:value="${role.id}" th:text="${role.role}" name="role">
+            </label>
+        </div>
         <input type="submit" value="Edit" class="update-button">
-    </form>
 
+    </form>
 </div>
+
 <form th:action="@{/admin/allusers}">
     <input type="submit" value="Back" class="delete-button">
 </form>
@@ -41,7 +41,6 @@
         <input type="submit" value="Log out" class="update-button">
     </form>
 </div>
-
 <style>
     .buttons-container {
         display: block;

@@ -67,15 +67,22 @@ public class UsersController {
     @GetMapping("/admin/user/update")
     public String pageUpdate(@RequestParam("id") long id, Model model) {
         model.addAttribute("up_user", userService.upPage(id));
+        model.addAttribute("update_role", userService.getAllRoles());
         return "update_user";
     }
     @PostMapping("/admin/user/edit")
-    public String update(@RequestParam("id") long id,
+    public String update(@ModelAttribute("User") User user,
+                         @RequestParam("id") long id,
                          @RequestParam("name") String name,
                          @RequestParam("lastName") String lastname,
                          @RequestParam("password") String password,
-                         @RequestParam("role") Collection<Role> role, Model model) {
-        model.addAttribute("update", userService.update(id, name, lastname, password, role));
+                         @RequestParam("role") Collection<Long> roleById) {
+        Collection<Role> list = new ArrayList<>();
+        for (Long upRole : roleById) {
+            list.addAll(userService.getRoleById(upRole));
+        }
+        user.setRoles(list);
+        userService.update(id, name, lastname, password, list);
         return "redirect:/admin/allusers";
     }
 

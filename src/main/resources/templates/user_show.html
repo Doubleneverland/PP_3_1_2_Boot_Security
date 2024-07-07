@@ -6,36 +6,73 @@
 </head>
 <body>
 
-<div>
-<table>
-    <tr th:each="user : ${get_user}">
-        <td th:text="${user.getName()} + ' ' + ${user.getLastName()} + ' ' + ${user.getAuthorities()}"></td>
-        <td>
-            <div class="buttons-container">
-                <form action="/admin/user/update">
-                    <input type="hidden" name="id" th:value="${user.id}">
-                    <input type="submit" value="Update" class="update-button">
-                </form>
+<style>
+    table, th, td {
+        border: 1px solid black;
+        text-align: center; /* Горизонтальное выравнивание */
+        vertical-align: middle; /* Вертикальное выравнивание */
+    }
+</style>
 
-                <form action="/admin/user/delete">
-                    <input type="hidden" name="id" th:value="${user.id}">
-                    <input type="submit" value="Delete" class="delete-button">
-                </form>
+<div class="even-row-color">
+    <table>
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Last Name</th>
+            <th>Roles</th>
+            <th>Action</th>
+            <th>Action</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user : ${get_user}">
+            <td th:text="${user.getName()}"></td>
+            <td th:text="${user.getLastName()}"></td>
+            <td>
+                <ul>
+                    <li th:text="${user.getAuthorities()}"></li>
+                </ul>
+            </td>
+            <td>
+                <div class="buttons-container">
+                    <form action="/admin/user/update">
+                        <input type="hidden" name="id" th:value="${user.id}">
+                        <input type="hidden" name="role" th:value="${user.getAuthorities()}">
+                        <input type="submit" value="Update" class="update-button">
+                    </form>
+                </div>
+            </td>
+            <td>
+                <div class="buttons-container">
+                    <form action="/admin/user/delete">
+                        <input type="hidden" name="id" th:value="${user.id}">
+                        <input type="submit" value="Delete" class="delete-button">
+                    </form>
+                </div>
+            </td>
+            <td>
+                <div class="buttons-container">
+                    <form action="/admin/userpage">
+                        <input type="hidden" name="id" th:value="${user.id}">
+                        <input type="submit" value="User page" class="update-button">
+                    </form>
+                </div>
+            </td>
 
-                <form action="/admin/userpage">
-                    <input type="hidden" name="id" th:value="${user.id}">
-                    <input type="submit" value="User page" class="update-button">
-                </form>
-            </div>
+        </tr>
+        </tbody>
 
-        </td>
-    </tr>
-</table>
-    <form th:action="@{/admin/user/new}">
-        <br/>
-        <br/>
-        <input type="submit" value="Press to create new user" class="update-button">
-    </form>
+    </table>
+
+        <form th:action="@{/admin/user/new}">
+            <br/>
+            <br/>
+            <input type="submit" value="Press to create new user" class="update-button">
+        </form>
+
+
 </div>
 <br>
 <div class="buttons-container">

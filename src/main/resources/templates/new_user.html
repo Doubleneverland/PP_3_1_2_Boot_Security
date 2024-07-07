@@ -7,29 +7,36 @@
 </head>
 <body>
 <div class="buttons-container">
-<form th:method="POST" th:action="@{/}" th:object="${newUser}">
-    <label for="name">Enter your name: </label>
-    <input type="text" th:field="*{name}" id="name">
-    <br/>
-    <br/>
-    <label for="lastName">Enter your lastname: </label>
-    <input type="text" th:field="*{lastName}" id="lastName">
-    <br/>
-    <br/>
-    <label for="pass">Enter password</label>
-    <input type="text" th:field="*{password}" id="pass">
-    <br/>
-    <br/>
-    <form method="POST" th:action="@{/}" th:object="${newUser}">
+    <form th:method="POST" th:action="@{/}" th:object="${newUser}">
+        <label for="name">Enter your name: </label>
+        <input type="text" th:field="*{name}" id="name">
+        <br/>
+        <br/>
+        <label for="lastName">Enter your lastname: </label>
+        <input type="text" th:field="*{lastName}" id="lastName">
+        <br/>
+        <br/>
+        <label for="pass">Enter password</label>
+        <input type="text" th:field="*{password}" id="pass">
+        <br/>
+        <br/>
+        <form method="POST" th:action="@{/}" th:object="${newUser}">
+            <!--        Multiple тоже работает-->
+            <!--        <label for="roles">Choose role:</label>-->
+            <!--        <select id="roles" name="roles" multiple="multiple">-->
+            <!--            <option th:each="role : ${list_role}" th:value="${role.id}" th:text="${role.role}"></option>-->
+            <!--        </select>-->
 
-        <label for="roles">Choose role:</label>
-        <select id="roles" name="roles" multiple="multiple">
-            <option th:each="role : ${list_role}" th:value="${role.id}" th:text="${role.role}"></option>
-        </select>
-        <input type="submit" value="Create" class="update-button">
+            Choose role:
+            <div th:each="roles : ${list_role}">
+                <label>
+                    <input type="checkbox" th:value="${roles.id}" th:text="${roles.role}" name="roles">
+                </label>
+            </div>
+            <input type="submit" value="Create" class="update-button">
+        </form>
+
     </form>
-
-</form>
 
 </div>
 <br>
