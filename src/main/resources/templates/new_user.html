@@ -7,7 +7,7 @@
 </head>
 <body>
 <div class="buttons-container">
-    <form th:method="POST" th:action="@{/}" th:object="${newUser}">
+    <form th:method="POST" th:action="@{/admin}" th:object="${newUser}">
         <label for="name">Enter your name: </label>
         <input type="text" th:field="*{name}" id="name">
         <br/>
@@ -20,7 +20,7 @@
         <input type="text" th:field="*{password}" id="pass">
         <br/>
         <br/>
-        <form method="POST" th:action="@{/}" th:object="${newUser}">
+        <form method="POST" th:action="@{/admin}" th:object="${newUser}">
             <!--        Multiple тоже работает-->
             <!--        <label for="roles">Choose role:</label>-->
             <!--        <select id="roles" name="roles" multiple="multiple">-->

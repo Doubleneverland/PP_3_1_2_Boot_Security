@@ -14,8 +14,6 @@ public interface UserDao {
 
     void save(User user);
 
-    void saveRole(Role role);
-
     List<User> read();
 
     User update(long id, String name, String lastname, String password, Collection<Role> role);
@@ -23,12 +21,6 @@ public interface UserDao {
     void delete(long id);
 
     User getUserByName(String name);
-
-    Role getRoleByName(String roleName);
-
-    Collection<Role> getAllRoles();
-
-    Collection<Role> getRoleById(long id);
 
     User upPage(long id);
 

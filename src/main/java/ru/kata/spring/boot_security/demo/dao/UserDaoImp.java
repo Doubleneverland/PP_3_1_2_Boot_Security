@@ -37,17 +37,6 @@ public class UserDaoImp implements UserDao {
 
     }
 
-    @Override
-    @Transactional
-    public void saveRole(Role role) {
-        entityManager.persist(role);
-    }
-
-    public Collection<Role> getAllRoles() {
-        TypedQuery<Role> list = (TypedQuery<Role>) entityManager.createQuery("from Role");
-        return list.getResultList();
-    }
-
     public User getUserByName(String name) {
         List<User> query =
                 entityManager.createQuery("SELECT u FROM User u where u.name = :userName", User.class)
@@ -57,28 +46,6 @@ public class UserDaoImp implements UserDao {
         }
         return null;
     }
-
-    @Override
-    @Transactional
-    public Role getRoleByName(String roleName) {
-        List<Role> role =
-                entityManager.createQuery("SELECT u FROM Role u where u.role = :userRole", Role.class)
-                        .setParameter("userRole", roleName).getResultList();
-        if (!role.isEmpty()) {
-            return role.get(0);
-        }
-        return null;
-    }
-
-    @Override
-    public Collection<Role> getRoleById(long id) {
-        TypedQuery<Role> role =
-                entityManager.createQuery("SELECT r FROM Role r WHERE r.id = :roleId", Role.class)
-                        .setParameter("roleId", id);
-        return role.getResultList();
-    }
-
-
 
     @Override
     public List<User> read() {

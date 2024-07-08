@@ -20,7 +20,4 @@ public interface UserService {
 
     User upPage(long id);
 
-    Collection<Role> getAllRoles();
-
-    Collection<Role> getRoleById(long id);
 }
